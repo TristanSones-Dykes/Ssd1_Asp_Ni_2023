@@ -38,6 +38,7 @@ Af_up1000_file <- paste(here::here(),
 
 # load fasta file as DNA string set
 Af_up1000_DSS <- readDNAStringSet(Af_up1000_file)
+hist(width(Af_up1000_DSS))
 
 # remove truncated sequences, which we don't need.
 Af_up1000_DSS <- Af_up1000_DSS[width(Af_up1000_DSS) == 1000]
