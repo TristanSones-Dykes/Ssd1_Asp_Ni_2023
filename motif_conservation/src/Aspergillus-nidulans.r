@@ -3,6 +3,7 @@ library(tidyverse)
 library(cowplot)
 theme_set(theme_cowplot(font_size = 12))
 library(Biostrings)
+library(ggseqlogo)
 
 # define fasta filename
 As_up1000_file <- paste(here::here(), 
@@ -143,3 +144,17 @@ ggplot(combined, aes(x = reorder(Name, -`Pct of bgd`, FUN = min), y = `Pct of bg
     geom_bar(stat = "identity", position = "dodge") +
     theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
     labs(x = "GO Name", y = "Pct of bgd", fill = "Type")
+
+
+library(idpr)
+
+# load protein FASTA file
+AN8881_file <- readBStringSet("motif_conservation/data/proteins/A0A1U8QRJ5.fasta.txt")
+
+# charge-hydropathy plot
+AN8881_vec <- as.character(AN8881_file, use.names = TRUE)
+chargeHydropathyPlot(AN8881_vec)
+
+scaledHydropathyLocal(AN8881_vec, plotResults = TRUE, window = 9)
+
+chargeCalculationGlobal(AN8881_vec, plotResults = TRUE)
