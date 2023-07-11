@@ -140,3 +140,7 @@ dmypy.json
 
 # ruffus pipeline history
 .ruffus_history.sqlite
+
+# Temporary files
+results/    
+results2/
